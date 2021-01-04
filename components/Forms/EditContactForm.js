@@ -28,24 +28,18 @@ export default function EditContactForm() {
     <label htmlFor="firstName">Имя</label>
     <input
         id="name"
-        name="name" 
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.errors.handleBlur}
-        value={formik.values.name} 
+        {...formik.getFieldProps('name')}
     />
     {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
 
     <label htmlFor="phoneNum">Телефон</label>
     <input
         id="phoneNum"
-        name="phoneNum" 
         type="text"
-        onChange={formik.handleChange}
-        onBlur={formik.errors.handleBlur}
-        value={formik.values.phoneNum} 
+        {...formik.getFieldProps('phoneNum')}
     />
-    {formik.errors.phoneNum ? <div>{formik.errors.phoneNum}</div> : null}
+    {formik.touched.phoneNum && formik.errors.phoneNum ? <div>{formik.errors.phoneNum}</div> : null}
     <button type="submit">Сохранить</button>
     </form>
   );
