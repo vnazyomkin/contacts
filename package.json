@@ -7,9 +7,10 @@
     "build": "next build",
     "start": "next start",
     "mock": "json-server -w db.json -p 4200 -d 450",
-    "serve": "concurrently \"npm run dev\" \"npm run mock\"" 
+    "serve": "concurrently \"npm run dev\" \"npm run mock\""
   },
   "dependencies": {
+    "formik": "^2.2.6",
     "json-server": "^0.16.3",
     "next": "10.0.4",
     "react": "17.0.1",
