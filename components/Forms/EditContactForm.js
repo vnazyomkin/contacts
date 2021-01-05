@@ -1,22 +1,20 @@
 import {ErrorMessage, useFormik} from 'formik';
 import * as Yup from 'yup';
-import "yup-phone";
 
 
-export default function EditContactForm() {
+export default function EditContactForm(props) {
     const validationSchema = Yup.object({
         name: Yup.string()
             .min(3, 'Имя должно быть больше 2 символов')
             .required('Имя обязательно для заполнения'),
         phoneNum: Yup.string()
-            .phone(),
 
     });
 
     const formik = useFormik({
       initialValues: {
-        name: '',
-        phoneNum: '',
+        name: props.name,
+        phoneNum: props.phoneNum,
       },
       validationSchema,
       onSubmit: values => {
