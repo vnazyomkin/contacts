@@ -2,12 +2,12 @@ import classes from './Contacts.module.scss'
 import EditContactForm from './EditContactForm';
 
 export default function Contacts(props) {
-    const contacts = props.contacts.map(contact => (
+    const contacts = props.contacts.map( (contact, i) => (
         <div className={classes.line}>
             <div className={classes.item}>{contact.name}</div>
             <div className={classes.item}>{contact.phone}</div>
             <button type="button" className={classes.item}>Редактировать</button>
-            <button type="button" className={classes.item}>Удалить</button>
+            <button type="button" className={classes.item} onClick={() => props.deleteContact(i)}>Удалить</button>
         </div>
     ));
     return (

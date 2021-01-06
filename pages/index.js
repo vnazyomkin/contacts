@@ -21,13 +21,23 @@ export default function Home() {
     setAddition(false);
   };
 
+  const addContact = () => {
+    alert('Новый контакт успешно добавлен');
+  }
+
+  const deleteContact = (i) => {
+    alert(`Контакт "${contacts[i].name}" успешно удален`);
+  }
+
   return (
     <main className={styles.main}>
       <Contacts 
         contacts={initContacts}
         addition={addition}
         turnOnAddition={turnOnAddition}
-        turnOffAddition={turnOffAddition}/>
+        turnOffAddition={turnOffAddition}
+        addContact={addContact}
+        deleteContact={deleteContact}/>
       {/* <EditContactForm
         name='Олег Тинькофф'
         phone='+79156164839'/> */}
