@@ -20,11 +20,9 @@ export default function EditContactForm(props) {
       }}
     >
       <Form>
-        <label htmlFor="firstName">Имя</label>
-        <Field name="name" as="text"/>
+        <Field name="name" type="text" placeholder="Имя"/>
         <ErrorMessage name="name" />
-        <label htmlFor="phone">Телефон</label>
-        <Field name="phone" type="text"/>
+        <Field name="phone" type="text" placeholder="Телефон"/>
         <ErrorMessage name="phone" />
         <button type="submit">Сохранить</button>
         <button type="button" onClick={props.cancel}>Отмена</button>
