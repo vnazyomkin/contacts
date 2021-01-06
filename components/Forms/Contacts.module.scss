@@ -1,7 +1,15 @@
 .item {
     display: inline-block;
+    width: 220px;
+
+    border: 1px solid black;
 }
 
 .line {
-    border: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 5px;
+
 }

@@ -3,7 +3,7 @@ import {useState} from 'react';
 
 import EditContactForm from '../components/Forms/EditContactForm';
 import Contacts from '../components/Forms/Contacts';
-import styles from '../styles/Home.module.css'
+import classes from '../styles/Home.module.css'
 
 export default function Home() {
   let initContacts =  [        
@@ -30,7 +30,7 @@ export default function Home() {
   }
 
   return (
-    <main className={styles.main}>
+    <main className={classes.main}>
       <Contacts 
         contacts={initContacts}
         addition={addition}
