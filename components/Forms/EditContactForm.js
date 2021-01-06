@@ -27,6 +27,7 @@ export default function EditContactForm(props) {
         <Field name="phone" type="text"/>
         <ErrorMessage name="phone" />
         <button type="submit">Сохранить</button>
+        <button type="button" onClick={props.cancel}>Отмена</button>
       </Form>
     </Formik>
   );

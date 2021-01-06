@@ -11,9 +11,23 @@ export default function Home() {
         {"name": "Юрий Дудь", "phone": "+79156164849"}
     ];
   let [contacts, setContacts] = useState(initContacts);
+  let [addition, setAddition] = useState(false);
+
+  const turnOnAddition = () => {
+    setAddition(true);
+  };
+
+  const turnOffAddition = () => {
+    setAddition(false);
+  };
+
   return (
     <main className={styles.main}>
-      <Contacts contacts={initContacts}/>
+      <Contacts 
+        contacts={initContacts}
+        addition={addition}
+        turnOnAddition={turnOnAddition}
+        turnOffAddition={turnOffAddition}/>
       {/* <EditContactForm
         name='Олег Тинькофф'
         phone='+79156164839'/> */}
