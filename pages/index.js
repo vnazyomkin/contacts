@@ -13,10 +13,10 @@ export default function Home() {
   let [contacts, setContacts] = useState(initContacts);
   return (
     <main className={styles.main}>
-      <Contacts contacts={contacts}/>
-      {/* <EditContactForm
+      {/* <Contacts contacts={contacts}/> */}
+      <EditContactForm
         name='Олег Тинькофф'
-        phoneNum='+79156164839'/> */}
+        phone='+79156164839'/>
     </main>
   );
 }
