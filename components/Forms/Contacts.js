@@ -1,10 +1,12 @@
-import Contact from './Contact';
+import classes from './Contacts.module.scss'
 
 export default function Contacts(props) {
-    return (
-        <form>
-            <Contact
-                contact={props.contacts[0]}/>
-        </form>
-    );
+    const contacts = props.contacts.map(contact => (
+        <div className={classes.line}>
+            <div className={classes.item}>{contact.name}</div>
+            <div className={classes.item}>{contact.phone}</div>
+            <a className={classes.item}>Редактировать</a>
+        </div>
+    ));
+    return contacts;
 }

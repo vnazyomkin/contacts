@@ -21,7 +21,7 @@ export default function EditContactForm(props) {
     >
       <Form>
         <label htmlFor="firstName">Имя</label>
-        <Field name="name" type="text"/>
+        <Field name="name" as="text"/>
         <ErrorMessage name="name" />
         <label htmlFor="phone">Телефон</label>
         <Field name="phone" type="text"/>
