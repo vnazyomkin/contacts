@@ -6,15 +6,17 @@ import Contacts from '../components/Forms/Contacts';
 import classes from '../styles/Home.module.css'
 
 export default function Home() {
-  let initContacts =  [        
+  const initContacts =  [        
         {"name": "Олег Тинькофф", "phone": "+79156164839"},
         {"name": "Юрий Дудь", "phone": "+79156164849"}
     ];
-  let [contacts, setContacts] = useState(initContacts);
-  let [addition, setAddition] = useState(false);
+  const [contacts, setContacts] = useState(initContacts);
+  const [addition, setAddition] = useState(false);
+  const [editId, setEditId] = useState(null);
 
   const turnOnAddition = () => {
     setAddition(true);
+    setEditId(null);
   };
 
   const turnOffAddition = () => {
@@ -29,15 +31,27 @@ export default function Home() {
     alert(`Контакт "${contacts[i].name}" успешно удален`);
   }
 
+  const startToEdit = (id) => {
+    setEditId(id);
+    setAddition(false);
+  }
+
+  const cancelToEdit = (id) => {
+    setEditId(null);
+  }
+
   return (
     <main className={classes.main}>
       <Contacts 
         contacts={initContacts}
         addition={addition}
+        editId={editId}
         turnOnAddition={turnOnAddition}
         turnOffAddition={turnOffAddition}
         addContact={addContact}
-        deleteContact={deleteContact}/>
+        deleteContact={deleteContact}
+        startToEdit={startToEdit}
+        cancelToEdit={cancelToEdit}/>
       {/* <EditContactForm
         name='Олег Тинькофф'
         phone='+79156164839'/> */}

@@ -1,6 +1,8 @@
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 
+import classes from './EditContactFrom.module.scss'
+
 
 export default function EditContactForm(props) {
     const validationSchema = Yup.object({
@@ -24,8 +26,8 @@ export default function EditContactForm(props) {
         <ErrorMessage name="name" />
         <Field name="phone" type="text" placeholder="Телефон"/>
         <ErrorMessage name="phone" />
-        <button type="submit">Сохранить</button>
-        <button type="button" onClick={props.cancel}>Отмена</button>
+        <button type="submit" className={classes.button}>Сохранить</button>
+        <button type="button" className={classes.button} onClick={props.cancel}>Отмена</button>
       </Form>
     </Formik>
   );
