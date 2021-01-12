@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 
 import classes from './EditContactFrom.module.scss'
 
-
 export default function EditContactForm(props) {
     const validationSchema = Yup.object({
         name: Yup.string()

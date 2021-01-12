@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import {useState} from 'react';
 
-import EditContactForm from '../components/Forms/EditContactForm';
 import Contacts from '../components/Forms/Contacts';
+import Modal from '../components/Modal/Modal';
 import classes from '../styles/Home.module.css'
 
 export default function Home() {
@@ -13,6 +13,7 @@ export default function Home() {
   const [contacts, setContacts] = useState(initContacts);
   const [addition, setAddition] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [modal, setModal] = useState(null);
 
   const turnOnAddition = () => {
     setAddition(true);
@@ -28,7 +29,8 @@ export default function Home() {
   }
 
   const deleteContact = (i) => {
-    alert(`Контакт "${contacts[i].name}" успешно удален`);
+    alert(`Контакт успешно удален`);
+    closeModal();
   }
 
   const startToEdit = (id) => {
@@ -40,21 +42,33 @@ export default function Home() {
     setEditId(null);
   }
 
+  const showModal = (text, resolve) => {
+    setModal({text, resolve});
+  }
+
+  const closeModal = () => {
+    setModal(null);
+  }
+
   return (
-    <main className={classes.main}>
-      <Contacts 
-        contacts={initContacts}
-        addition={addition}
-        editId={editId}
-        turnOnAddition={turnOnAddition}
-        turnOffAddition={turnOffAddition}
-        addContact={addContact}
-        deleteContact={deleteContact}
-        startToEdit={startToEdit}
-        cancelToEdit={cancelToEdit}/>
-      {/* <EditContactForm
-        name='Олег Тинькофф'
-        phone='+79156164839'/> */}
-    </main>
+    <>
+      <main className={classes.main}>
+        <Contacts 
+          contacts={initContacts}
+          addition={addition}
+          editId={editId}
+          turnOnAddition={turnOnAddition}
+          turnOffAddition={turnOffAddition}
+          addContact={addContact}
+          startToEdit={startToEdit}
+          cancelToEdit={cancelToEdit}
+          showModal={showModal}
+          closeModal={closeModal}/>
+        {/* <EditContactForm
+          name='Олег Тинькофф'
+          phone='+79156164839'/> */}
+      </main>
+      {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal}/> : null}
+    </>
   );
 }

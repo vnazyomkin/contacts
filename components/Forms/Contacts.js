@@ -12,7 +12,11 @@ export default function Contacts(props) {
                     className={[classes.item, classes.button].join(' ')} 
                     onClick={() => props.startToEdit(i)}
                     >Редактировать</button>
-                <button type="button" className={[classes.item, classes.button].join(' ')} onClick={() => props.deleteContact(i)}>Удалить</button>
+                <button 
+                    type="button" 
+                    className={[classes.item, classes.button].join(' ')} 
+                    onClick={() => props.showModal(`Вы действительно хотите удалить контакт "${contact.name}" из списка контактов?`, 'Да')}
+                >Удалить</button>
             </div>
             {props.editId === i ? <EditContactForm name={contact.name} phone={contact.phone} cancel={props.cancelToEdit}/> : null}
         </>
