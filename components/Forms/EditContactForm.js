@@ -4,13 +4,19 @@ import * as Yup from 'yup';
 import classes from './EditContactFrom.module.scss'
 
 export default function EditContactForm(props) {
-    const validationSchema = Yup.object({
-        name: Yup.string()
-            .min(3, 'Имя должно быть больше 2 символов')
-            .required('Имя обязательно для заполнения'),
-        phone: Yup.string()
+  const names = [];
+  props.contacts.forEach(contact => {
+    names.push(contact.name);
+  });
 
-    });
+  const validationSchema = Yup.object({
+      name: Yup.mixed()
+          //.min(3, 'Имя должно быть больше 2 символов')
+          .required('Имя обязательно для заполнения')
+          .notOneOf(names, "Данное имя уже есть"),
+      phone: Yup.string()
+
+  });
 
   return (
     <Formik

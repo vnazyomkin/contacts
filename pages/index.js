@@ -55,7 +55,7 @@ export default function Home() {
     <>
       <main className={classes.main}>
         <Contacts 
-          contacts={initContacts}
+          contacts={contacts}
           addition={addition}
           editId={editId}
           turnOnAddition={turnOnAddition}
@@ -65,9 +65,6 @@ export default function Home() {
           cancelToEdit={cancelToEdit}
           showModal={showModal}
           closeModal={closeModal}/>
-        {/* <EditContactForm
-          name='Олег Тинькофф'
-          phone='+79156164839'/> */}
       </main>
       {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal} id={modal.id}/> : null}
     </>

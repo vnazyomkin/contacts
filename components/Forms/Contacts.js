@@ -18,14 +18,14 @@ export default function Contacts(props) {
                     onClick={() => props.showModal(`Вы действительно хотите удалить контакт "${contact.name}" из списка контактов?`, 'Да', i)}
                 >Удалить</button>
             </div>
-            {props.editId === i ? <EditContactForm name={contact.name} phone={contact.phone} cancel={props.cancelToEdit}/> : null}
+            {props.editId === i ? <EditContactForm name={contact.name} phone={contact.phone} cancel={props.cancelToEdit} contacts={props.contacts}/> : null}
         </>
     ));
     return (
         <>
             {contacts}
             <button type="button" className={classes.button} onClick={props.turnOnAddition}>Добавить контакт</button>
-            {props.addition ? <EditContactForm cancel={props.turnOffAddition}/> : null}
+            {props.addition ? <EditContactForm cancel={props.turnOffAddition} contacts={props.contacts}/> : null}
         </>
     );
 }
