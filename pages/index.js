@@ -28,8 +28,8 @@ export default function Home() {
     alert('Новый контакт успешно добавлен');
   }
 
-  const deleteContact = (i) => {
-    alert(`Контакт успешно удален`);
+  const deleteContact = (id) => {
+    alert(`Контакт "${contacts[id].name}" успешно удален`);
     closeModal();
   }
 
@@ -42,8 +42,9 @@ export default function Home() {
     setEditId(null);
   }
 
-  const showModal = (text, resolve) => {
-    setModal({text, resolve});
+  const showModal = (text, resolve, id) => {
+    setModal({text, resolve, id});
+
   }
 
   const closeModal = () => {
@@ -68,7 +69,7 @@ export default function Home() {
           name='Олег Тинькофф'
           phone='+79156164839'/> */}
       </main>
-      {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal}/> : null}
+      {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal} id={modal.id}/> : null}
     </>
   );
 }
