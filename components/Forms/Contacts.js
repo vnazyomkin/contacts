@@ -1,9 +1,10 @@
+import {Fragment} from 'react';
 import classes from './Contacts.module.scss'
 import EditContactForm from './EditContactForm';
 
 export default function Contacts(props) {
     const contacts = props.contacts.map( (contact, i) => (
-        <>
+        <Fragment key={contact.id}>
             <div className={classes.line}>
                 <div className={classes.item}>{contact.name}</div>
                 <div className={classes.item}>{contact.phone}</div>
@@ -19,7 +20,7 @@ export default function Contacts(props) {
                 >Удалить</button>
             </div>
             {props.editId === i ? <EditContactForm name={contact.name} phone={contact.phone} cancel={props.cancelToEdit} contacts={props.contacts}/> : null}
-        </>
+        </Fragment>
     ));
     return (
         <>

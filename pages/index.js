@@ -7,9 +7,11 @@ import classes from '../styles/Home.module.css'
 
 export default function Home() {
   const initContacts =  [        
-        {"name": "Олег Тинькофф", "phone": "+79156164839"},
-        {"name": "Юрий Дудь", "phone": "+79156164849"}
+        {id:"f176ff756657","name": "Олег Тинькофф", "phone": "+79156164839"},
+        {id:"f176ff753cc9", "name": "Юрий Дудь", "phone": "+79156164849"}
     ];
+  // генератор id = `f${(+new Date).toString(16)}`
+
   const [contacts, setContacts] = useState(initContacts);
   const [addition, setAddition] = useState(false);
   const [editId, setEditId] = useState(null);
