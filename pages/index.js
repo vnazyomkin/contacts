@@ -5,14 +5,10 @@ import Contacts from '../components/Forms/Contacts';
 import Modal from '../components/Modal/Modal';
 import classes from '../styles/Home.module.css'
 
-export default function Home() {
-  const initContacts =  [        
-        {id:"f176ff756657","name": "Олег Тинькофф", "phone": "+79156164839"},
-        {id:"f176ff753cc9", "name": "Юрий Дудь", "phone": "+79156164849"}
-    ];
+export default function Home(props) {
   // генератор id = `f${(+new Date).toString(16)}`
-
-  const [contacts, setContacts] = useState(initContacts);
+  console.log(props);
+  const [contacts, setContacts] = useState(props.contacts);
   const [addition, setAddition] = useState(false);
   const [editId, setEditId] = useState(null);
   const [modal, setModal] = useState(null);
@@ -71,4 +67,15 @@ export default function Home() {
       {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal} id={modal.id}/> : null}
     </>
   );
+}
+
+export async function getStaticProps() {
+  const url = process.env.API_URL;
+  const res = await fetch(url + 'contacts');
+  const contacts = await res.json();
+  return {
+    props: {
+      contacts: contacts.vnazemkin,
+    },
+  };
 }
