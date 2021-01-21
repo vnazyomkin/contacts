@@ -23,7 +23,7 @@ export default function EditContactForm(props) {
       initialValues={{name: props.name, phone: props.phone}}
       validationSchema={validationSchema}
       onSubmit={values => {
-        alert(JSON.stringify(values, null, 3));
+        props.sendContact(values, props.id);
       }}
     >
       <Form>

@@ -6,12 +6,14 @@ import Modal from '../components/Modal/Modal';
 import classes from '../styles/Home.module.css'
 
 export default function Home(props) {
-  // генератор id = `f${(+new Date).toString(16)}`
-  console.log(props);
   const [contacts, setContacts] = useState(props.contacts);
   const [addition, setAddition] = useState(false);
   const [editId, setEditId] = useState(null);
   const [modal, setModal] = useState(null);
+
+  const createId = () => {
+    return `f${(+new Date).toString(16)}`;
+  };
 
   const turnOnAddition = () => {
     setAddition(true);
@@ -49,6 +51,19 @@ export default function Home(props) {
     setModal(null);
   }
 
+  const sendContact = (contact, id) => {
+    const data = contacts.filter(c => c.id !== id);
+    data.push({id: createId(),...contact});
+
+    const editContact = async function(data) {
+      const res = await fetch(process.env.API_URL + 'vnazemkin', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    }
+    //editContact(data);
+  }
+
   return (
     <>
       <main className={classes.main}>
@@ -62,7 +77,8 @@ export default function Home(props) {
           startToEdit={startToEdit}
           cancelToEdit={cancelToEdit}
           showModal={showModal}
-          closeModal={closeModal}/>
+          closeModal={closeModal}
+          sendContact={sendContact}/>
       </main>
       {modal ? <Modal text={modal.text} resolve={modal.resolve} submit={deleteContact} closeModal={closeModal} id={modal.id}/> : null}
     </>
@@ -71,11 +87,11 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const url = process.env.API_URL;
-  const res = await fetch(url + 'contacts');
-  const contacts = await res.json();
+  const res = await fetch(url + 'vnazemkin');
+  const user = await res.json();
   return {
     props: {
-      contacts: contacts.vnazemkin,
+      contacts: user.contacts,
     },
   };
 }
