@@ -52,9 +52,10 @@ export default function Home(props) {
   }
 
   const sendContact = (contact, id) => {
-    const data = contacts.filter(c => c.id !== id);
+    let data = contacts.filter(c => c.id !== id);
     data.push({id: createId(),...contact});
-
+    data = data.sort(sortFun);
+    console.log(JSON.stringify(data));
     const editContact = async function(data) {
       const res = await fetch(process.env.API_URL + 'vnazemkin', {
         method: 'PUT',
@@ -64,6 +65,13 @@ export default function Home(props) {
     //editContact(data);
   }
 
+  const sortFun = (a,b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  }
   return (
     <>
       <main className={classes.main}>
